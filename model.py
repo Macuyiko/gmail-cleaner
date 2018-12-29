@@ -1,7 +1,10 @@
 import sqlite3
+import os
 
 class EmailDB(object):
-    def __init__(self, database, connect=True):
+    def __init__(self, database=None, connect=True):
+        if database is None:
+            database = os.path.dirname(os.path.realpath(__file__)) + '/emails.db'
         self.database = database
         if connect:
             self.connect()
@@ -47,6 +50,7 @@ class EmailDB(object):
         self.query('INSERT INTO "email" ("id", "trashed") VALUES (?, 0)', ids, noreturn=True)
 
     def update_email(self, id, header_from, header_subject):
+        print((header_from, header_subject, id))
         self.query('UPDATE "email" SET "header_from" = ?, "header_subject" = ? WHERE "id" = ?', 
                     (header_from, header_subject, id), noreturn=True)
     

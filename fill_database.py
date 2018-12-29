@@ -6,7 +6,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
-from model import *
+from model import EmailDB
 from tqdm import tqdm
 from joblib import Parallel, delayed
 from collections import defaultdict
@@ -19,8 +19,7 @@ CREDENTIALS_FILE = 'gmail-python-quickstart.json'
 # Download this file from the Google API console:
 CLIENT_SECRET_FILE = 'client_secret_799876907855-a38rjtvpcslb6g7lh6libe18m4vo8gch.apps.googleusercontent.com.json'
 APPLICATION_NAME = 'Gmail API Python Quickstart'
-DATABASE = EmailDB(os.path.dirname(os.path.realpath(__file__)) + '/emails.db')
-
+DATABASE = EmailDB()
 
 def ParallelExecutor(use_bar='tqdm', **joblib_args):
     def aprun(bar=use_bar, **tq_args):

@@ -1,4 +1,4 @@
-from model import *
+from model import EmailDB
 from flask import *
 from diffcluster import *
 from fill_database import get_service
@@ -11,7 +11,7 @@ app.secret_key = 'something unique and secret'
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = EmailDB(db_path)
+        db = g._database = EmailDB()
     return db
 
 
