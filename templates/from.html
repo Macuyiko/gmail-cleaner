@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>{{ header_from }} ({{ amount }} email(s))</h1>
+
+<p><a class="btn btn-outline-primary" href="{{ url_for('index') }}">&larr; Back</a></p>
+
+<form method="post" action="{{ url_for('trash', header_from=header_from) }}">
+    <input type="hidden" name="ids" value="{{ all_ids|join(',') }}">
+    <button type="submit" class="btn btn-danger">Trash all of these</button>
+</form>
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>#&nbspEmails</th>
+            <th>Subject</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cluster in clusters %}
+        <tr>
+            <td>{{ cluster[0]|length }}</td>
+            <td><tt>{{ cluster[1]|default('', true) }}</tt></td>
+            <td>
+                <form method="post" action="{{ url_for('trash', header_from=header_from) }}">
+                    <input type="hidden" name="ids" value="{{ cluster[0]|join(',') }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Trash these</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<form method="post" action="{{ url_for('trash', header_from=header_from) }}">
+    <input type="hidden" name="ids" value="{{ all_ids|join(',') }}">
+    <button type="submit" class="btn btn-danger">Trash all of these</button>
+</form>
+
+{% endblock %}

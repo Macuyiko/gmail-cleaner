@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>#&nbsp;Emails</th>
+            <th>From</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in table %}
+        <tr>
+            <td>{{ row.amount|default('', true) }}</td>
+            <td><a href="{{ url_for('header_from', header_from=row.header_from|default('', true)) }}">
+                {{ row.header_from|default('', true) }}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
