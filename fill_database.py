@@ -17,7 +17,7 @@ import multiprocessing
 SCOPES = 'https://www.googleapis.com/auth/gmail.modify'
 CREDENTIALS_FILE = 'gmail-python-quickstart.json'
 # Download this file from the Google API console:
-CLIENT_SECRET_FILE = 'client_secret_799876907855-a38rjtvpcslb6g7lh6libe18m4vo8gch.apps.googleusercontent.com.json'
+CLIENT_SECRET_FILE = 'client_secret_-----------.apps.googleusercontent.com.json'
 APPLICATION_NAME = 'Gmail API Python Quickstart'
 DATABASE = EmailDB()
 
